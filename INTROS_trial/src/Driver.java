@@ -108,26 +108,29 @@ public class Driver {
             public void run () {
                 System.out.println("About to run Train Thread");
               int index = 0;
-                while (true){
-                    //there are free seats and there are waiting passengers
-                    //while (train.getAvailable()>0 && stations[index].getPassWaiting().size()==0){
+                while (true) {
+                    while (index < 7) {
+                        //there are free seats and there are waiting passengers
+                        //while (train.getAvailable()>0 && stations[index].getPassWaiting().size()==0){
                         //load train
 
-                 // }
+                        // }
 
-                  //train is full or no more waiting passengers
-                   if(train.getAvailable()!=0 || stations[index].getPassWaiting().size()==0){
-                        //next station
-                        train.setCurrStation(stations[index+1]);
-                        stations[index].setCurrTrain(null);
-                        stations[index+1].setCurrTrain(train);
-                       System.out.println(train.getTrainNum()+" moved to station "+stations[index].getStationNum());
-                    }
+                        //train is full or no more waiting passengers
+                        if (train.getAvailable() != 0 || stations[index].getPassWaiting().size() == 0) {
+                            //next station
+                            train.setCurrStation(stations[index + 1]);
+                            System.out.println(index + 1);
+                            stations[index].setCurrTrain(null);
+                            stations[index + 1].setCurrTrain(train);
+                            System.out.println(train.getTrainNum() + " moved to station " + stations[index + 1].getStationNum());
+                        }
 
-                    index++;
-                    System.out.println("train " + train.getTrainNum() + " is loading");
-                    if(train.getAvailable() > 0) {
-                        System.out.println("train " + train.getTrainNum() + " is moving");
+                        index++;
+                        System.out.println("train " + train.getTrainNum() + " is loading");
+                        if (train.getAvailable() > 0) {
+                            System.out.println("train " + train.getTrainNum() + " is moving");
+                        }
                     }
                 }
 
